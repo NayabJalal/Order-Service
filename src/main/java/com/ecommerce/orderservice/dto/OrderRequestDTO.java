@@ -14,5 +14,5 @@ import java.util.List;
 public class OrderRequestDTO {
     //Now we do not have JWT it,  so we are hard Coding the userID
     private Long userID;
-    private List<OrderItemDTO> items;
+    private List<OrderItemRequestDTO> items;
 }

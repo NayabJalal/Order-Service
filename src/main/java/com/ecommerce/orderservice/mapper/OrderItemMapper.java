@@ -7,7 +7,7 @@ import com.ecommerce.orderservice.entity.OrderItem;
 public class OrderItemMapper {
     public static OrderItem orderItemRequestDTOtoOrderItemEntity(OrderItemRequestDTO itemDTO, Order order , double pricePerUnit, double totalPrice){
         return OrderItem.builder()
-                .productId(itemDTO.getProductID())
+                .productId(itemDTO.getProductId())
                 .quantity(itemDTO.getQuantity())
                 .totalPrice(totalPrice)
                 .order(order)

@@ -9,6 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class OrderItemRequestDTO {
-    private Long productID;
+    private Long productId;
     private int quantity;
 }

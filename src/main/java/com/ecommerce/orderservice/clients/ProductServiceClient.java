@@ -18,7 +18,7 @@ public class ProductServiceClient {
     public ProductDTO getProductById(Long productId){
         RestTemplate restTemplate= restTemplateBuilder.build();
         //Not the best way > Service Discovery > netflix eureka - no hardCoding required
-        String url = "http://localhost:3000/api/products" + productId;
+        String url = "http://localhost:3000/api/products/" + productId;
         ResponseEntity<ProductDTO> response =restTemplate.getForEntity(url,ProductDTO.class);
         return response.getBody();
     }

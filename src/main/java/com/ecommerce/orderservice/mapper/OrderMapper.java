@@ -8,7 +8,7 @@ import com.ecommerce.orderservice.enums.OrderStatus;
 public class OrderMapper {
     public static Order toEntity(OrderRequestDTO dto){
         return Order.builder()
-                .userId(dto.getUserID())
+                .userId(dto.getUserId())
                 .status(OrderStatus.PENDING)
                 .build();
     }

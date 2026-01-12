@@ -32,7 +32,7 @@ public class OrderService implements IOrderService{
 
         for (OrderItemRequestDTO itemDTO : request.getItems()){
             //fetch the product details for every item, first we have to expose the product client;
-            ProductDTO product = productClient.getProductById(itemDTO.getProductID());
+            ProductDTO product = productClient.getProductById(itemDTO.getProductId());
             double pricePerUnit = product.getPrice();
             double totalPrice = pricePerUnit * itemDTO.getQuantity();
 

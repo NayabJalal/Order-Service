@@ -27,15 +27,17 @@ public class OrderService implements IOrderService{
     }
     @Override
     public CreateOrderResponseDTO createOrder(OrderRequestDTO request) {
-        Order order = OrderMapper.toEntity(request);
-        List<OrderItem> items = new ArrayList<>();
+        Order order = OrderMapper.toEntity(request); //orderEntity
+        List<OrderItem> items = new ArrayList<>(); //List of all the items with was sent
 
-        for (OrderItemRequestDTO itemDTO : request.getItems()){
+        for (OrderItemRequestDTO itemDTO : request.getItems()){ //iterate all the items one by one
             //fetch the product details for every item, first we have to expose the product client;
             ProductDTO product = productClient.getProductById(itemDTO.getProductId());
+            //Calculation here --
             double pricePerUnit = product.getPrice();
             double totalPrice = pricePerUnit * itemDTO.getQuantity();
 
+            //OrderItemDTO
             OrderItem item = OrderItemMapper.orderItemRequestDTOtoOrderItemEntity(
                     itemDTO,
                     order,
@@ -48,5 +50,7 @@ public class OrderService implements IOrderService{
         order.setItems(items);
         Order createdOrder = orderRepository.save(order);
         return OrderMapper.toCreateOrderResponseDTO(createdOrder);
+        //Entry Got added for both order and order_Items, The entry automatically got cascaded,got created,got passed on for orderItems as well
+        //Even though I haven't called OrderItem Repo,neither created it - it is because of the CASCADING Effect;
     }
 }

@@ -14,22 +14,21 @@ import com.ecommerce.orderservice.exceptions.ProductNotFoundException;
 import com.ecommerce.orderservice.mapper.OrderItemMapper;
 import com.ecommerce.orderservice.mapper.OrderMapper;
 import com.ecommerce.orderservice.repository.OrderRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class OrderService implements IOrderService{
 
     public final OrderRepository orderRepository;
     public final ProductServiceClient productClient;
 
-    public OrderService(OrderRepository orderRepository, ProductServiceClient productClient){
-        this.orderRepository = orderRepository;
-        this.productClient = productClient;
-    }
+
     @Override
     public CreateOrderResponseDTO createOrder(OrderRequestDTO request) {
         Order order = OrderMapper.toEntity(request); //orderEntity

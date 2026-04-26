@@ -5,6 +5,7 @@ import com.ecommerce.orderservice.dto.OrderDTO;
 import com.ecommerce.orderservice.dto.OrderRequestDTO;
 import com.ecommerce.orderservice.enums.OrderStatus;
 import com.ecommerce.orderservice.service.IOrderService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +14,11 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/orders")
 public class OrderController {
 
     private final IOrderService orderService;
-
-    public OrderController(IOrderService orderService){
-        this.orderService = orderService;
-    }
 
     @PostMapping
     public ResponseEntity<CreateOrderResponseDTO> createOrder (@Valid @RequestBody OrderRequestDTO request){
